@@ -18,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text('Hello'),
+        child: Text('Test Page'),
       ),
       );
   }
