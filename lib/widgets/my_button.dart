@@ -8,9 +8,7 @@ Widget myButton({onPress, color, textColor, title}) {
       backgroundColor: color,
       padding: const EdgeInsets.all(12),
     ),
-      onPressed: () {
-      onPress;
-      },
+      onPressed: onPress,
       child: Text(title,
           style: TextStyle(
             color: textColor,
