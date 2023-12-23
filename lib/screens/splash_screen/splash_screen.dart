@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splashIconSize: MediaQuery.of(context).size.height,
-      animationDuration: const Duration(seconds: 5),
+      animationDuration: const Duration(seconds: 3),
       backgroundColor: redColor,
       splash:Align(
         alignment: Alignment.center,
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 77,
               height: 77,
               child: Image.asset(
-                  'assets/images/app_logo.png',
+                  'assets/icons/app_logo.png',
                   width: 300),
             ),
             const SizedBox(height: 10),
