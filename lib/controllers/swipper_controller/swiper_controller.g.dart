@@ -41,6 +41,22 @@ mixin _$MySwiperController on _MySwiperController, Store {
     });
   }
 
+  late final _$secondSwiperListAtom =
+      Atom(name: '_MySwiperController.secondSwiperList', context: context);
+
+  @override
+  List<String> get secondSwiperList {
+    _$secondSwiperListAtom.reportRead();
+    return super.secondSwiperList;
+  }
+
+  @override
+  set secondSwiperList(List<String> value) {
+    _$secondSwiperListAtom.reportWrite(value, super.secondSwiperList, () {
+      super.secondSwiperList = value;
+    });
+  }
+
   late final _$_MySwiperControllerActionController =
       ActionController(name: '_MySwiperController', context: context);
 
@@ -59,7 +75,8 @@ mixin _$MySwiperController on _MySwiperController, Store {
   String toString() {
     return '''
 swiperController: ${swiperController},
-imagePathsList: ${imagePathsList}
+imagePathsList: ${imagePathsList},
+secondSwiperList: ${secondSwiperList}
     ''';
   }
 }

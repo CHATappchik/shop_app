@@ -17,6 +17,14 @@ abstract class _MySwiperController with Store {
     'assets/images/slider_4.png',
   ];
 
+  @observable
+  List<String> secondSwiperList = [
+    'assets/images/banner2.jpg',
+    'assets/images/banner3.jpg',
+    'assets/images/banner4.jpg',
+    'assets/images/banner5.jpg',
+  ];
+
 
   @action
   void updateSwiperController(SwiperController newController) {
