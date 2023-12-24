@@ -39,3 +39,15 @@ const brands = 'Brands';
 const topSellers = 'Top Sellers';
 const featuredProduct = 'Featured Product';
 const featuredCategories = 'Featured Categories';
+
+// category strings
+
+const womenClothing = 'Women Clothing',
+    menClothingFashion = 'Men Clothing Fashion',
+    compAccess = 'Computer & Accessories',
+    automobile = 'Automobile',
+    kidToys = 'Kid & Toys',
+    sports = 'Sports',
+    jewelery = 'Jewelery',
+    sellPhone = 'Cellphone & Tab',
+    furniture = 'Furniture';
