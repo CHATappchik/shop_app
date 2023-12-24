@@ -4,6 +4,7 @@ import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/const/styles.dart';
 import 'package:shop_app/often_used/often_used_func.dart';
 import 'package:shop_app/screens/auth_screen/register_screen.dart';
+import 'package:shop_app/screens/home_screen/home.dart';
 import 'package:shop_app/widgets/component/circular_tile.dart';
 import 'package:shop_app/widgets/custom_textfield.dart';
 import 'package:shop_app/widgets/my_button.dart';
@@ -89,7 +90,9 @@ class LoginPage extends StatelessWidget {
                                 color: redColor,
                                 title: login,
                                 textColor: whiteColor,
-                                onPress: () {}),
+                                onPress: () {
+                                  nextScreen(context, const Home());
+                                }),
                           ),
                           const SizedBox(height: 12),
                           Row(
