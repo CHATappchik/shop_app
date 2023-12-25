@@ -51,3 +51,12 @@ const womenClothing = 'Women Clothing',
     jewelery = 'Jewelery',
     sellPhone = 'Cellphone & Tab',
     furniture = 'Furniture';
+
+//product details strings
+
+const video = 'Video',
+    reviews = 'Reviews',
+    sellerPolicy = 'SellerPolicy',
+    returnPolicy = 'Return Policy',
+    supportPolicy = 'Support Policy',
+    productsLike = 'Products you may also like';

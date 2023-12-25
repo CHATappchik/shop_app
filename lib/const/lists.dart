@@ -26,3 +26,5 @@ const categoryImages = [
   'assets/images/fc8.jpeg',
   'assets/images/fc9.jpeg',
 ];
+
+const productDetailsList = [video, reviews, sellerPolicy, returnPolicy, supportPolicy];

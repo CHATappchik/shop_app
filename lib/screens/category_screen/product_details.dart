@@ -4,6 +4,8 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shop_app/const/colors.dart';
+import 'package:shop_app/const/lists.dart';
+import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/const/styles.dart';
 import 'package:shop_app/widgets/my_button.dart';
 
@@ -161,17 +163,181 @@ class ProductDetails extends StatelessWidget {
                                     (index) => Container(
                                           width: 40,
                                           height: 40,
-                                      margin: EdgeInsets.symmetric(horizontal: 4),
-                                      decoration: BoxDecoration(
-                                        color: Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0).withOpacity(1.0),
-                                        borderRadius: BorderRadius.circular(50),
-                                      ),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 4),
+                                          decoration: BoxDecoration(
+                                            color: Color(
+                                                    (Random().nextDouble() *
+                                                                0xFFFFFF)
+                                                            .toInt() <<
+                                                        0)
+                                                .withOpacity(1.0),
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                          ),
                                         )),
                               )
                             ],
                           ),
                         ),
+                        // quantity row
+
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  'Quantuty: ',
+                                  style: TextStyle(
+                                    color: textFieldGrey,
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.remove)),
+                                  Text(
+                                    '0',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: bold,
+                                      color: darkFontGrey,
+                                    ),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {}, icon: Icon(Icons.add)),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    '0 available',
+                                    style: TextStyle(
+                                      color: textFieldGrey,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+
+                        //Total row
+
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  'Total: : ',
+                                  style: TextStyle(
+                                    color: textFieldGrey,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '\$0,00',
+                                style: TextStyle(
+                                  color: redColor,
+                                  fontSize: 16,
+                                  fontFamily: bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
+                    ),
+                  ),
+
+                  //Description section
+                  const SizedBox(height: 10),
+                  Text(
+                    'Description',
+                    style: TextStyle(
+                      color: darkFontGrey,
+                      fontFamily: semibold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'The iPhone 13 features a 6.1-inch (155 mm) display with Super Retina XDR OLED technology at a resolution of 2532×1170 pixels and a pixel density of about 460 PPI with a refresh rate of 60 Hz.',
+                    style: TextStyle(
+                      color: darkFontGrey,
+                    ),
+                  ),
+
+                  //button section
+
+                  const SizedBox(height: 10),
+                  ListView(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    children: List.generate(
+                        productDetailsList.length,
+                        (index) => ListTile(
+                              title: Text(
+                                productDetailsList[index],
+                                style: TextStyle(
+                                    fontFamily: semibold, color: darkFontGrey),
+                              ),
+                              trailing: const Icon(Icons.arrow_forward),
+                            )),
+                  ),
+                  const SizedBox(height: 20),
+
+                  //products may like section
+
+                  Text(
+                      productsLike,
+                    style: TextStyle(
+                      fontFamily: bold,
+                      fontSize: 16,
+                      color: darkFontGrey,
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(6, (index) => Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        padding: const EdgeInsets.all(18),
+                        decoration: const BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.all(Radius.circular(12))
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/images/p1.jpeg',
+                              width: 150,
+                              fit: BoxFit.cover,
+                            ),
+                            const SizedBox(height: 10),
+                            const Text(
+                              'Laptop 4 GB/128GB',
+                              style: TextStyle(
+                                fontFamily: semibold,
+                                color: darkFontGrey,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            const Text(
+                              '\$600',
+                              style: TextStyle(
+                                color: redColor,
+                                fontFamily: bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ),
                     ),
                   ),
                 ],
