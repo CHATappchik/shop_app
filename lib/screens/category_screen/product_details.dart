@@ -46,12 +46,12 @@ class ProductDetails extends StatelessWidget {
                       height: 350,
                       child: Swiper(
                           autoplay: true,
-                          itemCount: 3,
+                          itemCount: productDetailsImageList.length,
                           itemBuilder: (context, index) {
                             return Image.asset(
-                              'assets/images/fc5.jpeg',
+                              productDetailsImageList[index],
                               width: double.infinity,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fitHeight,
                             );
                           }),
                     ),
