@@ -82,6 +82,7 @@ class CategoriesDetails extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(horizontal: 4),
                           padding: const EdgeInsets.all(18),
                           decoration: const BoxDecoration(
+                            boxShadow: [lightShadow],
                               color: whiteColor,
                               borderRadius: BorderRadius.all(Radius.circular(12))
                           ),
