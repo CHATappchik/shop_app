@@ -232,8 +232,6 @@ class HomePage extends StatelessWidget {
 
                     //third swiper
                     const SizedBox(height: 10),
-
-                    // 2-nd swiper
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(

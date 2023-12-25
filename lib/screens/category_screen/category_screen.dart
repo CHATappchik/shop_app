@@ -44,7 +44,7 @@ class CategoryPage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       color: whiteColor,
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
                       children: [
