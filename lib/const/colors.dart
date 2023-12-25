@@ -10,3 +10,9 @@ const Color golden = Color.fromRGBO(255, 168, 0, 1);
 
 
 const Color lightGolden = Color(0xffFEEAD1);
+
+const BoxShadow lightShadow = BoxShadow(
+  color: Color.fromRGBO(107, 115, 119, 0.2),
+  spreadRadius: 5,
+  blurRadius: 7,
+  offset: const Offset(0, 3),);

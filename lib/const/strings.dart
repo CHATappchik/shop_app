@@ -39,3 +39,24 @@ const brands = 'Brands';
 const topSellers = 'Top Sellers';
 const featuredProduct = 'Featured Product';
 const featuredCategories = 'Featured Categories';
+
+// category strings
+
+const womenClothing = 'Women Clothing',
+    menClothingFashion = 'Men Clothing Fashion',
+    compAccess = 'Computer & Accessories',
+    automobile = 'Automobile',
+    kidToys = 'Kid & Toys',
+    sports = 'Sports',
+    jewelery = 'Jewelery',
+    sellPhone = 'Cellphone & Tab',
+    furniture = 'Furniture';
+
+//product details strings
+
+const video = 'Video',
+    reviews = 'Reviews',
+    sellerPolicy = 'SellerPolicy',
+    returnPolicy = 'Return Policy',
+    supportPolicy = 'Support Policy',
+    productsLike = 'Products you may also like';
