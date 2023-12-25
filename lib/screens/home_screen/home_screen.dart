@@ -5,10 +5,12 @@ import 'package:shop_app/const/colors.dart';
 import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/const/styles.dart';
 import 'package:shop_app/controllers/swipper_controller/swiper_controller.dart';
+import 'package:shop_app/often_used/often_used_func.dart';
 import 'package:shop_app/widgets/featured_button.dart';
 import 'package:shop_app/widgets/home_buttons.dart';
 
 import '../../const/lists.dart';
+import '../category_screen/product_details.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -261,39 +263,42 @@ class HomePage extends StatelessWidget {
                         itemCount: 8,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8, mainAxisExtent: 300),
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 4),
-                            padding: const EdgeInsets.all(18),
-                            decoration: const BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: BorderRadius.all(Radius.circular(12))
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.asset(
-                                  'assets/images/iph13.jpg',
-                                  width: 200,
-                                  fit: BoxFit.cover,
-                                ),
-                                const Spacer(),
-                                const Text(
-                                  'APPLE iPhone 13 128GB Starlight',
-                                  style: TextStyle(
-                                    fontFamily: semibold,
-                                    color: darkFontGrey,
+                          return GestureDetector(
+                            onTap: () => nextScreen(context, ProductDetails(title: 'APPLE iPhone 13 128GB Starlight',)),
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              padding: const EdgeInsets.all(18),
+                              decoration: const BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.all(Radius.circular(12))
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/iph13.jpg',
+                                    width: 200,
+                                    fit: BoxFit.cover,
                                   ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  '\$800',
-                                  style: TextStyle(
-                                    color: redColor,
-                                    fontFamily: bold,
-                                    fontSize: 16,
+                                  const Spacer(),
+                                  const Text(
+                                    'APPLE iPhone 13 128GB Starlight',
+                                    style: TextStyle(
+                                      fontFamily: semibold,
+                                      color: darkFontGrey,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(height: 10),
+                                  const Text(
+                                    '\$800',
+                                    style: TextStyle(
+                                      color: redColor,
+                                      fontFamily: bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },

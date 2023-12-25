@@ -14,7 +14,7 @@ const featuredImages2 = [
 const featuredTitles1 = [womenDress, girlsDress, girlsWatches];
 const featuredTitles2 = [boysGlasses, mobilePhone, tShirts];
 
-const categoryList = [womenClothing, menClothingFashion, compAccess, automobile, kidToys, sports, jewelery, sellPhone, furniture];
+const categoryList = [menClothingFashion, compAccess, automobile, kidToys, sports, sellPhone, jewelery,  furniture, womenClothing,];
 const categoryImages = [
   'assets/images/fc1.jpeg',
   'assets/images/fc2.jpeg',
@@ -28,3 +28,10 @@ const categoryImages = [
 ];
 
 const productDetailsList = [video, reviews, sellerPolicy, returnPolicy, supportPolicy];
+
+const productDetailsImageList = [
+  'assets/images/iph13.jpg',
+  'assets/images/iphone-13-mini-2.jpg',
+  'assets/images/iphone-13-mini-3.jpg',
+  'assets/images/iphone_13_1.jpg',
+];
