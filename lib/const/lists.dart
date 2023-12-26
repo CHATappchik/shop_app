@@ -35,3 +35,12 @@ const productDetailsImageList = [
   'assets/images/iphone-13-mini-3.jpg',
   'assets/images/iphone_13_1.jpg',
 ];
+
+const accountButtonList = [points, favorites, orders, wishlist, messages];
+const accountButtonsIcons = [
+  'assets/icons/points.png',
+  'assets/icons/heart.png',
+  'assets/icons/order.png',
+  'assets/icons/orders.png',
+  'assets/icons/messages.png',
+];
