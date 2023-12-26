@@ -17,7 +17,7 @@ class CategoriesDetails extends StatelessWidget {
           color: redColor,
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 320.0),
+          padding: const EdgeInsets.only(top: 420.0),
           child: Container(
             color: textFieldGrey,
           ),

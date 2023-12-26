@@ -60,3 +60,25 @@ const video = 'Video',
     returnPolicy = 'Return Policy',
     supportPolicy = 'Support Policy',
     productsLike = 'Products you may also like';
+
+//account strings
+
+const logOut = 'Log out';
+
+const points = 'My Points',
+favorites = 'My Favorites',
+wishlist = 'My Wishlist',
+orders = 'My Orders',
+messages = 'My messages';
+
+//orders strings
+
+const shopping = 'My Shopping',
+    numOrder = '№ 134483',
+    dateAndTime = '26.12.20223 18:28',
+    adress = 'Shevchenko str, 44',
+    paid = 'Paid :',
+    writtenOff = 'Written Off :',
+    counted = 'Counted :';
+
+

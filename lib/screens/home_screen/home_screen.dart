@@ -8,7 +8,6 @@ import 'package:shop_app/controllers/swipper_controller/swiper_controller.dart';
 import 'package:shop_app/often_used/often_used_func.dart';
 import 'package:shop_app/widgets/featured_button.dart';
 import 'package:shop_app/widgets/home_buttons.dart';
-
 import '../../const/lists.dart';
 import '../category_screen/product_details.dart';
 
