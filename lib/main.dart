@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +15,7 @@ void main() async {
         appId: '1:899608299714:web:dbd3d0b71535eb31d0935b',
         messagingSenderId: '899608299714',
         projectId: 'shopapp-b1fcf'));
-  }
-  if (Platform.isAndroid) {
+  } else if (Platform.isAndroid) {
     await Firebase.initializeApp(options: FirebaseOptions(
         apiKey: 'AIzaSyAIAF17JTqfFor6ZdLnWyZmfocoujh5SAo',
         appId: '1:899608299714:android:a00c1204c5dc621dd0935b',
@@ -27,7 +25,6 @@ void main() async {
   else {
     await Firebase.initializeApp();
   }
-  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
