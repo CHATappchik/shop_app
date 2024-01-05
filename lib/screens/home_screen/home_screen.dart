@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/const/colors.dart';
 import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/const/styles.dart';
@@ -16,7 +17,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MySwiperController mySwiperController = MySwiperController();
+    final mySwiperController = context.watch<MySwiperController>();
+    //final MySwiperController mySwiperController = MySwiperController();
 
     return Container(
       padding: const EdgeInsets.all(12),

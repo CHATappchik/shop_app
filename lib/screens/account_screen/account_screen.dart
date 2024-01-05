@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/const/lists.dart';
 import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/often_used/often_used_func.dart';
+import 'package:shop_app/screens/auth_screen/login_screen.dart';
 import '../../const/colors.dart';
 import '../../const/styles.dart';
+import '../../controllers/auth_service_contoller/auth_service_controller.dart';
 import '../../widgets/details_card.dart';
 import 'my_orders/my_orders.dart';
 
@@ -12,6 +16,8 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = context.watch<AuthService>();
+    
     return Stack(
       children: [
         Container(
@@ -68,20 +74,23 @@ class AccountPage extends StatelessWidget {
                         ),
                       ),
                       OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          side: const BorderSide(
-                            color: whiteColor,
-                          )
-                        ),
-                          onPressed: () {},
-                          child: Text(
-                              logOut,
-                            style: TextStyle(
-                              fontFamily: semibold,
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(
                               color: whiteColor,
-                            ),
+                            )
                           ),
-                      )
+                            onPressed: () async{
+                            await authController.loguotMetod(context);
+                            nextScreen(context, LoginPage());
+                            },
+                            child: Text(
+                                logOut,
+                              style: TextStyle(
+                                fontFamily: semibold,
+                                color: whiteColor,
+                              ),
+                            ),
+                        )
                     ],
                   ),
                   const SizedBox(height: 20),

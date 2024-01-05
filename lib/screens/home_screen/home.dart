@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/const/colors.dart';
 import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/const/styles.dart';
@@ -17,10 +18,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final HomeController homeController = HomeController();
+  //final HomeController homeController = HomeController();
 
   @override
   Widget build(BuildContext context) {
+
+    final homeController = context.watch<HomeController>();
 
     var navbarItem = [
       const BottomNavigationBarItem(

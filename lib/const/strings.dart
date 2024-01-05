@@ -14,8 +14,11 @@ const signup = 'Sign up';
 const createNewAccount = 'or, create a new account';
 const loginWith = 'Log in with';
 const privacyPolicy = 'Privacy Policy';
+const loggedIn = 'Logged in successfully';
+const loggedOut = 'Logged out successfully';
 const termAndCond = 'Terms and Conditions';
 const alreadyHavenAccount = 'Already have an account? ';
+const userExists = 'User with this email already exists ';
 
 //home strings
 const home = 'Home';

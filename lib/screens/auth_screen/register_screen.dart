@@ -1,5 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/const/firebase_const.dart';
 import 'package:shop_app/often_used/often_used_func.dart';
+import 'package:shop_app/screens/home_screen/home.dart';
+import 'package:shop_app/controllers/auth_service_contoller/auth_service_controller.dart';
+import 'package:shop_app/services/database_service/database_service.dart';
 import '../../const/colors.dart';
 import '../../const/strings.dart';
 import '../../const/styles.dart';
@@ -17,8 +24,16 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool? isCheck = false;
 
+  //text controllers
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  var retypePasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final authController = context.watch<AuthService>();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -77,22 +92,35 @@ class _SignUpPageState extends State<SignUpPage> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 16),
-                            child: customTextField(lable: name, hint: nameHint),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child:
-                                customTextField(lable: email, hint: emailHint),
+                            child: customTextField(
+                                lable: name,
+                                hint: nameHint,
+                                controller: nameController,
+                                isPass: false),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 16),
                             child: customTextField(
-                                lable: password, hint: passwordHint),
+                                lable: email,
+                                hint: emailHint,
+                                controller: emailController,
+                                isPass: false),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 16),
                             child: customTextField(
-                                lable: retypePassword, hint: passwordHint),
+                                lable: password,
+                                hint: passwordHint,
+                                controller: passwordController,
+                                isPass: true),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: customTextField(
+                                lable: retypePassword,
+                                hint: passwordHint,
+                                controller: retypePasswordController,
+                                isPass: true),
                           ),
                           Align(
                               alignment: Alignment.centerRight,
@@ -103,7 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           Row(
                             children: [
                               Checkbox(
-                                activeColor: redColor,
+                                  activeColor: redColor,
                                   checkColor: whiteColor,
                                   value: isCheck,
                                   onChanged: (newValue) {
@@ -152,10 +180,51 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: SizedBox(
                               width: double.infinity,
                               child: myButton(
-                                  color: isCheck == true? redColor : lightGrey,
-                                  title: signup,
-                                  textColor: whiteColor,
-                                  onPress: () {}),
+                                color: isCheck == true ? redColor : lightGrey,
+                                title: signup,
+                                textColor: whiteColor,
+                                onPress: () async {
+                                  if (isCheck != false) {
+                                    try {
+                                      // Перевірка, чи вже є такий користувач у базі
+
+                                      await DataBaseService().gettingUserData(emailController.value.text).then((value) async => {
+                                      if (value.docs.isNotEmpty) {
+                                          showSnackBar(context, darkFontGrey,
+                                          userExists),
+                                      // Якщо користувач з таким емейлом існує, переходьте на екран авторизації
+                                      nextScreen(context, const LoginPage()),
+                                    } else {
+
+                                        // якщо ж не існує, то реєструємо нового користувача
+
+                                    await authController
+                                        .createUser(
+                                        context: context,
+                                        email: emailController.text,
+                                        password:
+                                        passwordController.text)
+                                        .then((value) {
+                                      return authController.storeUserData(
+                                          name: nameController.text,
+                                          email: emailController.text,
+                                          password:
+                                          passwordController.text);
+                                    }).then((value) {
+                                      showSnackBar(
+                                          context, redColor, loggedIn);
+                                      nextScreen(context, Home());
+                                    })
+                                  }
+                                      });
+
+                                    } catch (e) {
+                                      auth.signOut();
+                                      showSnackBar(context, redColor, e);
+                                    }
+                                  }
+                                },
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -163,25 +232,25 @@ class _SignUpPageState extends State<SignUpPage> {
                             onTap: () {
                               nextScreenReplace(context, const LoginPage());
                             },
-                            child: RichText(text: const TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: alreadyHavenAccount,
-                                    style: TextStyle(
-                                      fontFamily: bold,
-                                      color: fontGrey,
-                                    ),
+                            child: RichText(
+                                text: const TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: alreadyHavenAccount,
+                                  style: TextStyle(
+                                    fontFamily: bold,
+                                    color: fontGrey,
                                   ),
-                                  TextSpan(
-                                    text: login,
-                                    style: TextStyle(
-                                      fontFamily: bold,
-                                      color: redColor,
-                                    ),
+                                ),
+                                TextSpan(
+                                  text: login,
+                                  style: TextStyle(
+                                    fontFamily: bold,
+                                    color: redColor,
                                   ),
-                                ],
-                            )
-                            ),
+                                ),
+                              ],
+                            )),
                           ),
                           const SizedBox(height: 10),
                         ],

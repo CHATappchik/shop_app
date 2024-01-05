@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/const/colors.dart';
 
 void nextScreen (context, page) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => page));
@@ -10,12 +11,11 @@ void nextScreenReplace (context, page) {
 
 void showSnackBar (context, color, message) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(message,
+    content: Text(message.toString(),
         style: const TextStyle(fontSize: 14)
     ),
     backgroundColor: color,
     duration: const Duration(seconds: 3),
-    action: SnackBarAction(label: 'OK', onPressed: () {}, textColor: Colors.white,
-    ),
+    //action: SnackBarAction(label: 'OK', onPressed: () {}, textColor: whiteColor),
   ));
 }

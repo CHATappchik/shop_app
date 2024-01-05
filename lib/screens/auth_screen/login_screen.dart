@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/const/colors.dart';
 import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/const/styles.dart';
+import 'package:shop_app/controllers/auth_service_contoller/auth_service_controller.dart';
 import 'package:shop_app/often_used/often_used_func.dart';
 import 'package:shop_app/screens/auth_screen/register_screen.dart';
 import 'package:shop_app/screens/home_screen/home.dart';
@@ -14,6 +16,14 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final authController = context.watch<AuthService>();
+
+    //text controllers
+
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -72,12 +82,12 @@ class LoginPage extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only (top: 16),
-                            child: customTextField(lable: email, hint: emailHint),
+                            child: customTextField(lable: email, hint: emailHint, isPass: false, controller: emailController),
                           ),
                           Padding(
                             padding: const EdgeInsets.only (top: 16),
                             child: customTextField(
-                                lable: password, hint: passwordHint),
+                                lable: password, hint: passwordHint, isPass: true, controller: passwordController),
                           ),
                           Align(
                               alignment: Alignment.centerRight,
@@ -90,7 +100,12 @@ class LoginPage extends StatelessWidget {
                                 color: redColor,
                                 title: login,
                                 textColor: whiteColor,
-                                onPress: () {
+                                onPress: () async{
+                                  await authController.loginUser(email: emailController.value.text, password: passwordController.value.text, context: context).then((value) {
+                                    if(value == true) {
+                                      showSnackBar(context, redColor, loggedIn);
+                                    }
+                                  });
                                   nextScreen(context, const Home());
                                 }),
                           ),
