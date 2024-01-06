@@ -15,6 +15,5 @@ void showSnackBar (context, color, message) {
     ),
     backgroundColor: color,
     duration: const Duration(seconds: 3),
-    //action: SnackBarAction(label: 'OK', onPressed: () {}, textColor: whiteColor),
   ));
 }

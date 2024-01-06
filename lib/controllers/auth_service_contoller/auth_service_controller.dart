@@ -4,7 +4,6 @@ import 'package:mobx/mobx.dart';
 import 'package:shop_app/const/colors.dart';
 import '../../const/firebase_const.dart';
 import '../../often_used/often_used_func.dart';
-
 part 'auth_service_controller.g.dart';
 
 class AuthService = _AuthService with _$AuthService;
@@ -14,6 +13,9 @@ abstract class _AuthService with Store {
 
   @observable
   User? currentUser;
+
+  @observable
+  var isLoading = false;
 
   //login metod
 
@@ -51,7 +53,7 @@ abstract class _AuthService with Store {
     DocumentReference store =
         await firestore.collection(userCollection).doc(currentUser!.uid);
     store.set(
-        {'name': name, 'password': password, 'email': email, 'imageUrl': ''});
+        {'name': name, 'password': password, 'email': email, 'imageUrl': '', 'id': currentUser!.uid});
   }
 
 //logout metod

@@ -1,9 +1,11 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/const/colors.dart';
+import 'package:shop_app/const/firebase_const.dart';
 import 'package:shop_app/const/strings.dart';
 import 'package:shop_app/screens/auth_screen/login_screen.dart';
-
+import 'package:shop_app/screens/home_screen/home.dart';
 import '../../const/styles.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,6 +16,24 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late bool _isSignedIn = true;
+
+  userStatus () async{
+    await auth.authStateChanges().listen((User? user) {
+      if(user == null && mounted) {
+        setState(() {
+          _isSignedIn = false;
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    userStatus ();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
@@ -50,7 +70,8 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
 
 
-      nextScreen: const LoginPage(),);
+      nextScreen: _isSignedIn ? const Home()
+      :const LoginPage(),);
 
   }
 }

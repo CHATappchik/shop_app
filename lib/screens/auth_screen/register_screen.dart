@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/const/firebase_const.dart';
 import 'package:shop_app/often_used/often_used_func.dart';
@@ -86,172 +87,180 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: customTextField(
-                                lable: name,
-                                hint: nameHint,
-                                controller: nameController,
-                                isPass: false),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: customTextField(
-                                lable: email,
-                                hint: emailHint,
-                                controller: emailController,
-                                isPass: false),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: customTextField(
-                                lable: password,
-                                hint: passwordHint,
-                                controller: passwordController,
-                                isPass: true),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: customTextField(
-                                lable: retypePassword,
-                                hint: passwordHint,
-                                controller: retypePasswordController,
-                                isPass: true),
-                          ),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: TextButton(
-                                  onPressed: () {},
-                                  child: const Text(forgetPass))),
-                          const SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Checkbox(
-                                  activeColor: redColor,
-                                  checkColor: whiteColor,
-                                  value: isCheck,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      isCheck = newValue;
-                                    });
-                                  }),
-                              Expanded(
-                                child: RichText(
-                                    text: const TextSpan(children: [
-                                  TextSpan(
-                                    text: 'I agree to the ',
-                                    style: TextStyle(
-                                      fontFamily: regular,
-                                      color: fontGrey,
+                      child: Observer(builder: (_) => Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: customTextField(
+                                  lable: name,
+                                  hint: nameHint,
+                                  controller: nameController,
+                                  isPass: false),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: customTextField(
+                                  lable: email,
+                                  hint: emailHint,
+                                  controller: emailController,
+                                  isPass: false),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: customTextField(
+                                  lable: password,
+                                  hint: passwordHint,
+                                  controller: passwordController,
+                                  isPass: true),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: customTextField(
+                                  lable: retypePassword,
+                                  hint: passwordHint,
+                                  controller: retypePasswordController,
+                                  isPass: true),
+                            ),
+                            Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: const Text(forgetPass))),
+                            const SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Checkbox(
+                                    activeColor: redColor,
+                                    checkColor: whiteColor,
+                                    value: isCheck,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        isCheck = newValue;
+                                      });
+                                    }),
+                                Expanded(
+                                  child: RichText(
+                                      text: const TextSpan(children: [
+                                    TextSpan(
+                                      text: 'I agree to the ',
+                                      style: TextStyle(
+                                        fontFamily: regular,
+                                        color: fontGrey,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: termAndCond,
-                                    style: TextStyle(
-                                      fontFamily: regular,
-                                      color: redColor,
+                                    TextSpan(
+                                      text: termAndCond,
+                                      style: TextStyle(
+                                        fontFamily: regular,
+                                        color: redColor,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: ' & ',
-                                    style: TextStyle(
-                                      fontFamily: regular,
-                                      color: fontGrey,
+                                    TextSpan(
+                                      text: ' & ',
+                                      style: TextStyle(
+                                        fontFamily: regular,
+                                        color: fontGrey,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: privacyPolicy,
-                                    style: TextStyle(
-                                      fontFamily: regular,
-                                      color: redColor,
+                                    TextSpan(
+                                      text: privacyPolicy,
+                                      style: TextStyle(
+                                        fontFamily: regular,
+                                        color: redColor,
+                                      ),
                                     ),
-                                  ),
-                                ])),
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: 5),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 2),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: myButton(
-                                color: isCheck == true ? redColor : lightGrey,
-                                title: signup,
-                                textColor: whiteColor,
-                                onPress: () async {
-                                  if (isCheck != false) {
-                                    try {
-                                      // Перевірка, чи вже є такий користувач у базі
+                                  ])),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 5),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: authController.isLoading
+                                    ? const CircularProgressIndicator(
+                                  valueColor:
+                                  AlwaysStoppedAnimation(redColor),
+                                )
+                                    :myButton(
+                                  color: isCheck == true ? redColor : lightGrey,
+                                  title: signup,
+                                  textColor: whiteColor,
+                                  onPress: () async {
+                                    if (isCheck != false) {
+                                      authController.isLoading = true;
+                                      try {
+                                        // Перевірка, чи вже є такий користувач у базі
 
-                                      await DataBaseService().gettingUserData(emailController.value.text).then((value) async => {
-                                      if (value.docs.isNotEmpty) {
-                                          showSnackBar(context, darkFontGrey,
-                                          userExists),
-                                      // Якщо користувач з таким емейлом існує, переходьте на екран авторизації
-                                      nextScreen(context, const LoginPage()),
-                                    } else {
+                                        await DataBaseService().gettingUserData(emailController.value.text).then((value) async => {
+                                        if (value.docs.isNotEmpty) {
+                                            showSnackBar(context, darkFontGrey,
+                                            userExists),
+                                        // Якщо користувач з таким емейлом існує, переходьте на екран авторизації
+                                        nextScreen(context, const LoginPage()),
+                                      } else {
 
-                                        // якщо ж не існує, то реєструємо нового користувача
+                                          // якщо ж не існує, то реєструємо нового користувача
 
-                                    await authController
-                                        .createUser(
-                                        context: context,
-                                        email: emailController.text,
-                                        password:
-                                        passwordController.text)
-                                        .then((value) {
-                                      return authController.storeUserData(
-                                          name: nameController.text,
+                                      await authController
+                                          .createUser(
+                                          context: context,
                                           email: emailController.text,
                                           password:
-                                          passwordController.text);
-                                    }).then((value) {
-                                      showSnackBar(
-                                          context, redColor, loggedIn);
-                                      nextScreen(context, Home());
-                                    })
-                                  }
-                                      });
-
-                                    } catch (e) {
-                                      auth.signOut();
-                                      showSnackBar(context, redColor, e);
+                                          passwordController.text)
+                                          .then((value) {
+                                        return authController.storeUserData(
+                                            name: nameController.text,
+                                            email: emailController.text,
+                                            password:
+                                            passwordController.text);
+                                      }).then((value) {
+                                        showSnackBar(
+                                            context, redColor, loggedIn);
+                                        nextScreen(context, Home());
+                                      })
                                     }
-                                  }
-                                },
+                                        });
+
+                                      } catch (e) {
+                                        auth.signOut();
+                                        showSnackBar(context, redColor, e);
+                                        authController.isLoading = false;
+                                      }
+                                    }
+                                  },
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                          GestureDetector(
-                            onTap: () {
-                              nextScreenReplace(context, const LoginPage());
-                            },
-                            child: RichText(
-                                text: const TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: alreadyHavenAccount,
-                                  style: TextStyle(
-                                    fontFamily: bold,
-                                    color: fontGrey,
+                            const SizedBox(height: 10),
+                            GestureDetector(
+                              onTap: () {
+                                nextScreenReplace(context, const LoginPage());
+                              },
+                              child: RichText(
+                                  text: const TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: alreadyHavenAccount,
+                                    style: TextStyle(
+                                      fontFamily: bold,
+                                      color: fontGrey,
+                                    ),
                                   ),
-                                ),
-                                TextSpan(
-                                  text: login,
-                                  style: TextStyle(
-                                    fontFamily: bold,
-                                    color: redColor,
+                                  TextSpan(
+                                    text: login,
+                                    style: TextStyle(
+                                      fontFamily: bold,
+                                      color: redColor,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            )),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
+                                ],
+                              )),
+                            ),
+                            const SizedBox(height: 10),
+                          ],
+                        ),
                       ),
                     ),
                   ),

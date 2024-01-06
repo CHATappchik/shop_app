@@ -25,6 +25,22 @@ mixin _$AuthService on _AuthService, Store {
     });
   }
 
+  late final _$isLoadingAtom =
+      Atom(name: '_AuthService.isLoading', context: context);
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   late final _$loginUserAsyncAction =
       AsyncAction('_AuthService.loginUser', context: context);
 
@@ -55,7 +71,8 @@ mixin _$AuthService on _AuthService, Store {
   @override
   String toString() {
     return '''
-currentUser: ${currentUser}
+currentUser: ${currentUser},
+isLoading: ${isLoading}
     ''';
   }
 }

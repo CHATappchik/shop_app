@@ -18,7 +18,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mySwiperController = context.watch<MySwiperController>();
-    //final MySwiperController mySwiperController = MySwiperController();
 
     return Container(
       padding: const EdgeInsets.all(12),
